@@ -1,5 +1,6 @@
 <?php
 namespace core\fast;
+use core\fast\Conf;
 
 /**
  * 路由处理
@@ -27,14 +28,14 @@ class Route
 			//去除空的数组
 			$pathArray = array_filter($path);
 			//获取控制器名  把首字符大写
-			$this->controllerName = ucfirst($pathArray[0]);
+			$this->controllerName = ucfirst(strtolower($pathArray[0]));
 			//删除第一个控制名
 			array_shift($pathArray);
 			//获取方法如果无则用默认的
-			$this->actionName = $pathArray?$pathArray[0]:'index';
+			$this->actionName = $pathArray?$pathArray[0]:Conf::get('default_action');
 		}else{
-			$this->controllerName = 'index';
-			$this->actionName = 'index';
+			$this->controllerName = Conf::get('default_controller');
+			$this->actionName = Conf::get('default_action');
 		}
 		$ctrlClass = APP.'controllers\\'. $this->controllerName;
 		//是否存在控制器

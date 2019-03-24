@@ -1,0 +1,20 @@
+{
+	"name":"leng/fastpphp",
+	"description": "PHP framework",
+  	"type": "project",
+  	"keywords": [
+	    "framework",
+	    "fastpphp",
+	    "mvc"
+  	],
+  	"authors": [
+	    {
+	      "name": "kuan",
+	      "email": "kuan9531@skyczk.cn"
+	    }
+  	],
+  	"require": {
+    	"php": ">=5.6.0",
+    	"filp/whoops":"*"
+  	}
+}
