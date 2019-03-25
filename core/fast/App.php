@@ -16,6 +16,7 @@ class App
 		self::setReporting();
 		new \core\fast\route();
 		$conf = Conf::all();
+		dump($conf);
 		// debug($conf);
 	}
 	//自动加载
