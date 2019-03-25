@@ -4,8 +4,8 @@
 */
 function debug($var){
 	if(is_null($var)){
-		var_dump(null);
+		dump(null);
 	}else {
-		var_dump($var);
+		dump($var);
 	}
 }

@@ -1,8 +1,11 @@
 <?php
 namespace app\controllers;
+use core\fast\Sql;
 class Index 
 {
 	public function index(){
-		debug(111);
+		$table = new Sql();
+		$name = $table->getOne(1);
+		debug($name);
 	}
 }

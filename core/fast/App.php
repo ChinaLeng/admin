@@ -1,8 +1,9 @@
 <?php
 namespace core\fast;
 use core\fast\Conf;
+
 /**
- * 
+ * 框架核心
  */
 class App 
 {
@@ -12,12 +13,10 @@ class App
 		# code...
 	}
 	public static function run( ){ 
+    	include 'vendor/autoload.php';
 		spl_autoload_register('self::loadClass');
 		self::setReporting();
 		new \core\fast\route();
-		$conf = Conf::all();
-		dump($conf);
-		// debug($conf);
 	}
 	//自动加载
 	public static function loadClass($className){
@@ -37,7 +36,6 @@ class App
 	// 检测开发环境
     public static function setReporting()
     {
-    	include 'vendor/autoload.php';
         if (APP_DEBUG === true) {
         	$whoops = new \Whoops\Run;
 			$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
