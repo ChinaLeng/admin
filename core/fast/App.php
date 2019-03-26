@@ -13,7 +13,7 @@ class App
 		# code...
 	}
 	public static function run( ){ 
-    	include 'vendor/autoload.php';
+    	include APP_PATH.'/vendor/autoload.php';
 		spl_autoload_register('self::loadClass');
 		self::setReporting();
 		new \core\fast\route();
