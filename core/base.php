@@ -3,7 +3,6 @@ define('APP', 'app\\');
 define('APP_DEBUG', true);
 define('ENV_PREFIX', 'PHP_'); // 环境变量的配置前缀
 include CORE.'/common/function.php';
-// debug(APP_PATH);
 include CORE.'/fast/App.php';
 //加载EVN文件配置
 if(is_file(APP_PATH.'/.env')){

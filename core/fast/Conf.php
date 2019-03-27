@@ -6,6 +6,11 @@ namespace core\fast;
 class Conf 
 {
 	public static $fileArray = [];
+	//获取单个配置文件
+	/*
+	*$name  配置项名称
+	$file   文件名 默认为Config
+	*/
 	public static function get($name,$file='Config'){
 		if(isset(self::$fileArray[$file])){
 			return self::$fileArray[$file][$name];
@@ -26,6 +31,8 @@ class Conf
 			}
 		}
 	}
+	//获取某一个文件中的所有配置
+	//$file  文件名称  默认为Config
 	public static function all($file='Config'){
 		if(isset(self::$fileArray[$file])){
 			return self::$fileArray[$file];

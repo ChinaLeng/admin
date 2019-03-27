@@ -16,6 +16,7 @@ class App
     	include APP_PATH.'/vendor/autoload.php';
 		spl_autoload_register('self::loadClass');
 		self::setReporting();
+		//加载路由类
 		new \core\fast\route();
 	}
 	//自动加载

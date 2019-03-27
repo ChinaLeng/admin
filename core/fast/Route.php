@@ -7,6 +7,7 @@ use core\fast\Conf;
  */
 class Route 
 {
+	public  $moduleName;
 	public  $controllerName;
 	public  $actionName;
 	public function __construct(){
@@ -27,6 +28,12 @@ class Route
 			$path = explode('/',trim($url,'/'));
 			//去除空的数组
 			$pathArray = array_filter($path);
+			if(count($pathArray) == 3){
+				$this->moduleName = strtolower($pathArray[0]);
+				array_shift($pathArray);
+			}else{
+				$this->moduleName = Conf::get('default_module');
+			}
 			//获取控制器名  把首字符大写
 			$this->controllerName = ucfirst(strtolower($pathArray[0]));
 			//删除第一个控制名
@@ -34,13 +41,14 @@ class Route
 			//获取方法如果无则用默认的
 			$this->actionName = $pathArray?$pathArray[0]:Conf::get('default_action');
 		}else{
+			$this->moduleName     = Conf::get('default_module');
 			$this->controllerName = Conf::get('default_controller');
-			$this->actionName = Conf::get('default_action');
+			$this->actionName     = Conf::get('default_action');
 		}
-		$ctrlClass = APP.'controllers\\'. $this->controllerName;
+		$ctrlClass = APP.'controllers\\'. $this->moduleName .'\\' .$this->controllerName;
 		//是否存在控制器
 		if(class_exists($ctrlClass)){
-			$file = new $ctrlClass();
+			$file = new $ctrlClass($this->moduleName,$this->controllerName,$this->actionName);
 			//是否存在方法
 			if(method_exists($ctrlClass,$this->actionName)){
 				$action = $this->actionName;
