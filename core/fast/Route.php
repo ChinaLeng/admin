@@ -19,6 +19,7 @@ class Route
 			//去掉?后面的值
 			$newurl = strpos($url, '?');
 			$url = $newurl === false?$url:substr($url,0,$newurl);
+			// debug($url);die;
 			//链接是否存在index.php
 			$newurl = strpos($url, 'index.php');
 			if($newurl !== false){
@@ -35,7 +36,7 @@ class Route
 				$this->moduleName = Conf::get('default_module');
 			}
 			//获取控制器名  把首字符大写
-			$this->controllerName = ucfirst(strtolower($pathArray[0]));
+			$this->controllerName = ucfirst(strtolower($pathArray?$pathArray[0]:Conf::get('default_controller')));
 			//删除第一个控制名
 			array_shift($pathArray);
 			//获取方法如果无则用默认的
