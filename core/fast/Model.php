@@ -1,10 +1,15 @@
 <?php
 namespace core\fast;
-use core\fast\Sql;
+// use core\fast\Sql;
+use Illuminate\Database\Eloquent\Model as Models;
 
-class Model extends Sql{
+
+class Model extends Models{
 	protected $model;
+	protected $table = null;
+	public $timestamps  = false;
 	public function __construct(){
+		new \core\fast\Db();
 		parent::__construct();
 		//如果没有设置表名
 		if(!$this->table){

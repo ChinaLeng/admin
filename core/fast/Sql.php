@@ -1,7 +1,7 @@
 <?php
 namespace core\fast;
 /**
- * 
+ * 已废弃
  */
 class Sql extends Db
 {	

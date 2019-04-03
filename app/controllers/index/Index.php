@@ -2,6 +2,7 @@
 namespace app\controllers\index;
 use core\fast\Controller;
 use app\model\User;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Index extends Controller
 {
@@ -10,8 +11,10 @@ class Index extends Controller
 		parent::__construct($module,$controller,$action);
 	}
 	public function index(){
-		$user = new User();
-		// debug($user->insertOne([['textname'=>'测试2'],['textname'=>'测试3']]));
+		//通过table查询数据
+		dump(Capsule::table('user')->get());
+		//通过model查询数据
+		dump(User::all());
 		$this->assign('data','index');
 		return $this->view();
 	}
