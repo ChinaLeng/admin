@@ -1,5 +1,5 @@
 <?php
-define('APP', 'app\\');
+define('APP', 'app/');
 define('APP_DEBUG', true);
 define('ENV_PREFIX', 'PHP_'); // 环境变量的配置前缀
 include CORE.'/common/function.php';

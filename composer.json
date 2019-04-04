@@ -18,6 +18,7 @@
     	"filp/whoops":"*",
     	"symfony/var-dumper":"*",
       "twig/twig":"*",
-      "illuminate/database":"~5.5.0"
+      "illuminate/database":"~5.5.0",
+      "noahbuscher/macaw":"dev-master"
   	}
 }

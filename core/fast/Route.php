@@ -3,6 +3,7 @@ namespace core\fast;
 use core\fast\Conf;
 
 /**
+ *自己手写路由 已不使用
  * 路由处理
  */
 class Route 
@@ -46,10 +47,10 @@ class Route
 			$this->controllerName = Conf::get('default_controller');
 			$this->actionName     = Conf::get('default_action');
 		}
-		$ctrlClass = APP.'controllers\\'. $this->moduleName .'\\' .$this->controllerName;
+		$ctrlClass = str_replace('/', '\\', APP.'controllers\\'. $this->moduleName .'\\' .$this->controllerName);
 		//是否存在控制器
 		if(class_exists($ctrlClass)){
-			$file = new $ctrlClass($this->moduleName,$this->controllerName,$this->actionName);
+			$file = new $ctrlClass();
 			//是否存在方法
 			if(method_exists($ctrlClass,$this->actionName)){
 				$action = $this->actionName;
