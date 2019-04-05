@@ -10,7 +10,8 @@ class View
 	public  $_action;
 	public function __construct()
 	{
-		$this->_module     = strtolower(Conf::get('default_module'));
+		$this->get_module();
+		// $this->_module     = strtolower(Conf::get('default_module'));
 		$this->_controller = strtolower(Conf::get('default_controller'));
 		$this->_action     = strtolower(Conf::get('default_action'));
 	}
@@ -46,8 +47,6 @@ class View
 		$viewarray = array_filter($viewarray);
 		if(count($viewarray) == 3){
 			$this->_module = array_shift($viewarray);
-		}else{
-			$this->_module = strtolower(Conf::get('default_module'));
 		}
 		krsort($viewarray);
 		if(!empty($viewarray)){
@@ -56,5 +55,12 @@ class View
 		if(!empty($viewarray)){
 			$this->_controller = array_shift($viewarray);
 		}
+	}
+
+	public function get_module(){
+		$modulearry = get_class($this);
+		$modulearry = explode('\\', $modulearry);
+		$modulearry = array_filter($modulearry);
+		$this->_module = strtolower(end($modulearry));
 	}
 }

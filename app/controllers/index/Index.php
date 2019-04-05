@@ -20,7 +20,7 @@ class Index extends Controller
 		//通过model查询数据
 		dump(User::all());
 		$this->assign('data','index');
-		return $this->view('index/demo');
+		return $this->view();
 	}
 /*	public function demo($id){
 		dump($id);
