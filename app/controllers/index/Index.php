@@ -15,10 +15,12 @@ class Index extends Controller
 		parent::__construct();
 	}
 	public function index(){
+		//获取地理位置
+		// dump(get_position('127.0.0.1'));
 		//通过table查询数据
-		dump(Db::table('user')->get());
+		// dump(Db::table('user')->get());
 		//通过model查询数据
-		dump(User::all());
+		// dump(User::all());
 		$this->assign('data','index');
 		return $this->view();
 	}
@@ -27,6 +29,6 @@ class Index extends Controller
 		return $this->view();
 	}*/
 	public function demo(){
-		return $this->view();
+		return $this->view('demo');
 	}
 }

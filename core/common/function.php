@@ -1,7 +1,11 @@
 <?php
-/*
-全局方法
-*/
+// +----------------------------------------------------------------------
+// | 全局方法
+// +----------------------------------------------------------------------
+// | Blog http://blog.skyczk.cn/
+// +----------------------------------------------------------------------
+// | Author: 陈政宽 <kuan9531@skyczk.cn>
+// +----------------------------------------------------------------------
 //打印值
 function debug($var){
 	if(is_null($var)){
@@ -73,3 +77,29 @@ function post($name = false,$default = false){
         return $_POST;
     }
 }
+//获取用户登录IP
+function getIp(){
+        if ($_SERVER["HTTP_CLIENT_IP"])
+             $ip = $_SERVER["HTTP_CLIENT_IP"];
+        else if($_SERVER["HTTP_X_FORWARDED_FOR"])
+            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        else if($_SERVER["REMOTE_ADDR"])
+            $ip = $_SERVER["REMOTE_ADDR"];
+        else $ip = "Unknow";
+        if($ip=='::1')
+            $ip='127.0.0.1';
+        return $ip;
+}
+/**
+* 根据用户IP获取用户地理位置
+* $ip  用户ip
+*/
+function get_position($ip){
+     if(empty($ip)){
+         return  '缺少用户ip';
+     }
+     $url = 'http://ip.taobao.com/service/getIpInfo.php?ip='.$ip;
+     $ipContent = file_get_contents($url);
+     $ipContent = json_decode($ipContent,true); 
+     return $ipContent;
+ }
