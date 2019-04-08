@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers\index;
 use core\fast\Controller;
+use core\fast\Upload;
 use app\model\User;
 use Illuminate\Database\Capsule\Manager as Db;
 
@@ -15,6 +16,7 @@ class Index extends Controller
 		parent::__construct();
 	}
 	public function index(){
+		debug(new Upload());
 		//获取地理位置
 		// dump(get_position('127.0.0.1'));
 		//通过table查询数据
