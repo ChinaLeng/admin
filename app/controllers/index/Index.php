@@ -31,10 +31,11 @@ class Index extends Controller
 		return $this->view();
 	}*/
 	public function demo(){
-		// debug($_FILES['file']);
-		$uuu = new Upload();
-		debug($uuu->upload('file'));
-		// echo '111';die;
+		// 上传文件;
+		// $uuu = new Upload();
+		// debug($uuu->upload('file'));
+		// echo $uuu->getError();
+		// echo $uuu->getLastName();
 		// return $this->view('demo');
 	}
 }

@@ -55,9 +55,7 @@ use core\fast\Conf;
  	//文件上传方法
  	public  function upload($fileName='file'){
  		//获取上传信息
- 		// return $this->setFiles($fileName);
 		if($this->setFiles($fileName)){
-			debug(1);
 			if($this->checkFilePath() && $this->checkSize() && $this->checkType() && $this->checkSuffixType() && $this->checkIsdir()){
 				$filePath = $this->uploadFile();
 				return $filePath;
@@ -67,8 +65,8 @@ use core\fast\Conf;
  	//检查是否文件夹是否存在 不存在就生成
  	public function checkIsdir(){
  		if(!is_dir(APP_PATH.$this->upload_target_dir.'/'.date('Ymd'))){
-			mkdir(APP_PATH.$this->upload_target_dir.'/'.date('Ymd'));
-			chmod(APP_PATH.$this->upload_target_dir.'/'.date('Ymd'),0777);
+			mkdir(APP_PATH.$this->upload_target_dir.'/'.date('Ymd'),0777,true);
+			// chmod(APP_PATH.$this->upload_target_dir.'/'.date('Ymd'),0777);
  		}
  		$this->upload_target_newdir = APP_PATH.$this->upload_target_dir.'/'.date('Ymd');
  		return true;
@@ -108,14 +106,16 @@ use core\fast\Conf;
  	}
  	//设置新的文件名
  	public function setNewName(){
-		$this->upload_new_name = date('ymd').rand(100,999).rand(100,999).$this->upload_suffixtype;
+		$this->upload_new_name = date('Ymd').rand(100,999).rand(100,999).'.'.$this->upload_suffixtype;
  	}
  	//进行文件上传
  	public function uploadFile(){
  		$this->setNewName();
  		$this->upload_target_path = $this->upload_target_newdir."/".$this->upload_new_name;
- 		if(@move_uploaded_file($this->upload_new_name,$this->upload_target_path)){
-			return $this->upload_target_dir."/".date('ymd').'/'.$this->upload_new_name;
+ 		debug($this->upload_target_path);
+ 		debug($this->upload_new_name);
+ 		if(@move_uploaded_file($this->upload_tmp_name,$this->upload_target_path)){
+			return true;
  		}
  	    $this->setOption('upload_error',-3);
 		 return false;
@@ -132,6 +132,15 @@ use core\fast\Conf;
 		$this->upload_file_size = $_FILES["file"]["size"];
 		$aryStr = explode(".", $this->upload_name);
 		$this->upload_suffixtype = strtolower(end($aryStr));
+		return true;
+ 	}
+ 	//获取上传后的地址
+ 	public function getLastName(){
+ 		$lastpart = $this->upload_target_dir.'/'.date('Ymd').'/'.$this->upload_new_name;
+ 		if(strpos($lastpart,'/public') !== false){
+			$lastpart = str_replace('/public','',$lastpart);
+ 		}
+ 		return $lastpart;
  	}
  	//设置错误信息
  	public function getError(){
