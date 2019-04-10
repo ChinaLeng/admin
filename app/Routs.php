@@ -13,5 +13,5 @@ use \NoahBuscher\Macaw\Macaw;
 });*/
 Macaw::get('/', 'app\controllers\index\index@index');
 // Macaw::get('/demo/(:num)', 'app\controllers\index\index@demo');
-Macaw::get('/demo', 'app\controllers\index\index@demo');
+Macaw::post('/demo', 'app\controllers\index\index@demo');
 Macaw::dispatch();

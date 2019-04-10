@@ -16,7 +16,7 @@ class Index extends Controller
 		parent::__construct();
 	}
 	public function index(){
-		debug(new Upload());
+		// debug(new Upload());
 		//获取地理位置
 		// dump(get_position('127.0.0.1'));
 		//通过table查询数据
@@ -31,6 +31,10 @@ class Index extends Controller
 		return $this->view();
 	}*/
 	public function demo(){
-		return $this->view('demo');
+		// debug($_FILES['file']);
+		$uuu = new Upload();
+		debug($uuu->upload('file'));
+		// echo '111';die;
+		// return $this->view('demo');
 	}
 }
